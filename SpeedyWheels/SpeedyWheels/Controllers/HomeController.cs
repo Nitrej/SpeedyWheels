@@ -23,7 +23,8 @@ namespace SpeedyWheels.Controllers
                 Name = m.Name,
                 ProductionYear = m.ProductionDay.Year.ToString(),
                 CostPerHour = m.CostPerHour,
-                ImgUrl = m.ImageAddress
+                ImgUrl = m.ImageAddress,
+                Id = m.Id
             });
 
             if (!String.IsNullOrEmpty(pattern))

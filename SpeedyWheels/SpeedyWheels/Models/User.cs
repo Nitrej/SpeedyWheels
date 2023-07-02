@@ -12,9 +12,7 @@ namespace SpeedyWheels.Models
 {
     public class User : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-
+        
         [Required]
         [NotNull]
         public bool IsAdmin { get; set; }

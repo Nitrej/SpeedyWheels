@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SpeedyWheels.Models
 {
@@ -51,7 +52,7 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
-        public virtual int UserId { get; set; }
+        public virtual string UserId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

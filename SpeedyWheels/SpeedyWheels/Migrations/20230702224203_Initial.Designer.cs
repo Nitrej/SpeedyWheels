@@ -12,8 +12,8 @@ using SpeedyWheels.Models;
 namespace SpeedyWheels.Migrations
 {
     [DbContext(typeof(RentalDataContext))]
-    [Migration("20230702002601_SecondDatabase")]
-    partial class SecondDatabase
+    [Migration("20230702224203_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,29 @@ namespace SpeedyWheels.Migrations
 
             NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
 
-            modelBuilder.Entity("RentalApp.Data.Car", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUserClaim");
+                });
+
+            modelBuilder.Entity("SpeedyWheels.Models.Car", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,9 +69,9 @@ namespace SpeedyWheels.Migrations
                     b.Property<char>("GearBox")
                         .HasColumnType("character(1)");
 
-                    b.Property<byte[]>("Image")
+                    b.Property<string>("ImageAddress")
                         .IsRequired()
-                        .HasColumnType("bytea");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsRented")
                         .HasColumnType("boolean");
@@ -78,7 +100,7 @@ namespace SpeedyWheels.Migrations
                     b.ToTable("Cars");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Client", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Client", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,8 +139,9 @@ namespace SpeedyWheels.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -128,7 +151,7 @@ namespace SpeedyWheels.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.ClientOpinion", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.ClientOpinion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +185,7 @@ namespace SpeedyWheels.Migrations
                     b.ToTable("ClientOpinions");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Invoice", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Invoice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -194,7 +217,7 @@ namespace SpeedyWheels.Migrations
                     b.ToTable("Invoices");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Rental", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Rental", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -226,7 +249,7 @@ namespace SpeedyWheels.Migrations
                     b.ToTable("Rentals");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Services", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Services", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -257,18 +280,22 @@ namespace SpeedyWheels.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.User", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -276,29 +303,44 @@ namespace SpeedyWheels.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Client", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Client", b =>
                 {
-                    b.HasOne("RentalApp.Data.User", "User")
+                    b.HasOne("SpeedyWheels.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -307,15 +349,15 @@ namespace SpeedyWheels.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.ClientOpinion", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.ClientOpinion", b =>
                 {
-                    b.HasOne("RentalApp.Data.Client", "Client")
+                    b.HasOne("SpeedyWheels.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RentalApp.Data.Rental", "Rental")
+                    b.HasOne("SpeedyWheels.Models.Rental", "Rental")
                         .WithMany()
                         .HasForeignKey("RentalId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -326,15 +368,15 @@ namespace SpeedyWheels.Migrations
                     b.Navigation("Rental");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Invoice", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Invoice", b =>
                 {
-                    b.HasOne("RentalApp.Data.Client", "Client")
+                    b.HasOne("SpeedyWheels.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RentalApp.Data.Rental", "Rental")
+                    b.HasOne("SpeedyWheels.Models.Rental", "Rental")
                         .WithMany()
                         .HasForeignKey("RentalId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -345,15 +387,15 @@ namespace SpeedyWheels.Migrations
                     b.Navigation("Rental");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Rental", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Rental", b =>
                 {
-                    b.HasOne("RentalApp.Data.Car", "Car")
+                    b.HasOne("SpeedyWheels.Models.Car", "Car")
                         .WithMany()
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RentalApp.Data.Client", "Client")
+                    b.HasOne("SpeedyWheels.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -364,9 +406,9 @@ namespace SpeedyWheels.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("RentalApp.Data.Services", b =>
+            modelBuilder.Entity("SpeedyWheels.Models.Services", b =>
                 {
-                    b.HasOne("RentalApp.Data.Car", "Car")
+                    b.HasOne("SpeedyWheels.Models.Car", "Car")
                         .WithMany()
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
