@@ -5,8 +5,9 @@ using SpeedyWheels.Areas.Identity.Data;
 
 namespace SpeedyWheels.Data;
 
-/*public class SpeedyWheelsContext : IdentityDbContext<SpeedyWheelsUser>
+/*public class SpeedyWheelsContext : IdentityDbContext <SpeedyWheelsUser>
 {
+    public DbSet<IdentityUserClaim<string>> UserClaims { get; set; }
     public SpeedyWheelsContext(DbContextOptions<SpeedyWheelsContext> options)
         : base(options)
     {
