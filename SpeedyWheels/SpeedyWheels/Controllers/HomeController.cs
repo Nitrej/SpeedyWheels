@@ -14,9 +14,10 @@ namespace SpeedyWheels.Controllers
             this.context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string pattern)
         {
-            var cars = this.context.Cars.Select(m => new CarSearchViewModel
+            
+            var cars = this.context.Cars.Where(o => o.IsRented==false).Select(m => new CarSearchViewModel
             {
                 Brand = m.Brand,
                 Name = m.Name,
@@ -24,8 +25,15 @@ namespace SpeedyWheels.Controllers
                 CostPerHour = m.CostPerHour,
                 ImgUrl = m.ImageAddress
             });
+
+            if (!String.IsNullOrEmpty(pattern))
+            {
+                pattern = pattern.ToLower();
+                cars = cars.Where(s => s.Name.ToLower().Contains(pattern) || s.Brand.ToLower().Contains(pattern));
+            }
             return View(cars);
         }
+
 
         public IActionResult Privacy()
         {
