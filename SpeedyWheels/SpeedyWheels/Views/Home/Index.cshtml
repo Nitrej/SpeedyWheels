@@ -1,19 +1,26 @@
-﻿@model IEnumerable<SpeedyWheels.ViewModels.ClientViewModel>
+﻿@model IEnumerable<SpeedyWheels.ViewModels.CarSearchViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-@foreach(var client in Model){
-    <h1>@client.Name @client.Surname</h1>
-    <br>
-    <p>Email: @client.Email</p>
-    <br>
-    <p>Phone number: @client.PhoneNumber</p>
-    <br>
-    <p>Address: @client.Address</p>
-    <br>
-}
+<div class="text-center">
+    @foreach (var car in Model)
+    {
+        <div style="border: 2px; background-color: dimgray" class="row">
+            <div class="col-md-6" style="width: auto;">
+                <img src="@car.ImgUrl" width="250pt" height="200pt" style="float: left; padding: 5pt;" class="card-img"></img>
+            </div>
+            <div class="col-md-6 flex-fill" >
+                <h1 style="float: right;"> @car.Brand @car.Name</h1>
+                <p style="float: right; clear: both;">@car.ProductionYear</p>
+                <h3 style="float: right; clear: both;">@car.CostPerHour zł/h</h3>
+                <button style="float: right; clear: both;" class=" btn btn-primary">Sprawdz</button>
+            </div>
+        </div>
+    }
+</div>
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

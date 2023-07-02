@@ -16,15 +16,15 @@ namespace SpeedyWheels.Controllers
 
         public IActionResult Index()
         {
-            var clients = this.context.Clients.Include(m => m.User).Select(m => new ClientViewModel { 
+            var cars = this.context.Cars.Select(m => new CarSearchViewModel
+            {
+                Brand = m.Brand,
                 Name = m.Name,
-                Surname = m.Surname,
-                PhoneNumber = m.PhoneNumber,
-                Address = m.Address,
-                Email = m.User.Email
-            
+                ProductionYear = m.ProductionDay.Year.ToString(),
+                CostPerHour = m.CostPerHour,
+                ImgUrl = m.ImageAddress
             });
-            return View(clients);
+            return View(cars);
         }
 
         public IActionResult Privacy()
