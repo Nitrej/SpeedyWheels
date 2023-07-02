@@ -61,7 +61,7 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
-        public Byte[] Image { get; set; }
+        public string ImageAddress { get; set; }
 
     }
 }

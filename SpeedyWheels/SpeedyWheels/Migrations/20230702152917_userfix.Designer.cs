@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SpeedyWheels.Models;
@@ -11,9 +12,11 @@ using SpeedyWheels.Models;
 namespace SpeedyWheels.Migrations
 {
     [DbContext(typeof(RentalDataContext))]
-    partial class RentalDataContextModelSnapshot : ModelSnapshot
+    [Migration("20230702152917_userfix")]
+    partial class userfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

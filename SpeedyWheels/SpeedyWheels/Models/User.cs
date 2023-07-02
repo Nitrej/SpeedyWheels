@@ -17,26 +17,6 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
-        [MaxLength(50)]
-        public string Name { get; set; }
-
-        [Required]
-        [NotNull]
-        [MaxLength(50)]
-        public string Email { get; set; }
-
-        [Required]
-        [NotNull]
-        [MaxLength(100)]
-        public string Password { get; set; }
-
-        [Required]
-        [NotNull]
-        [MaxLength(50)]
-        public string Salt { get; set; }
-
-        [Required]
-        [NotNull]
         public bool IsAdmin { get; set; }
 
         [Required]
