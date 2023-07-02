@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SpeedyWheels.Areas.Identity.Data;
-using SpeedyWheels.Data;
 using SpeedyWheels.Models;
 using User = SpeedyWheels.Models.User;
 
