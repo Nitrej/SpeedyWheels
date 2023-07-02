@@ -1,0 +1,21 @@
+﻿@model IEnumerable<SpeedyWheels.ViewModels.ClientViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@foreach(var client in Model){
+    <h1>@client.Name @client.Surname</h1>
+    <br>
+    <p>Email: @client.Email</p>
+    <br>
+    <p>Phone number: @client.PhoneNumber</p>
+    <br>
+    <p>Address: @client.Address</p>
+    <br>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
