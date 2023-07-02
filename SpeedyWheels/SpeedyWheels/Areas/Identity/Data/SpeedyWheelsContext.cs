@@ -1,23 +1,22 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using SpeedyWheels.Areas.Identity.Data;
+﻿//using Microsoft.AspNetCore.Identity;
+//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
+//using SpeedyWheels.Models;
 
-namespace SpeedyWheels.Data;
+//namespace SpeedyWheels.Data;
 
-/*public class SpeedyWheelsContext : IdentityDbContext <SpeedyWheelsUser>
-{
-    public DbSet<IdentityUserClaim<string>> UserClaims { get; set; }
-    public SpeedyWheelsContext(DbContextOptions<SpeedyWheelsContext> options)
-        : base(options)
-    {
-    }
+//public class SpeedyWheelsContext : IdentityDbContext<User>
+//{
+//    public SpeedyWheelsContext(DbContextOptions<SpeedyWheelsContext> options)
+//        : base(options)
+//    {
+//    }
 
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
-    }
-}*/
+//    protected override void OnModelCreating(ModelBuilder builder)
+//    {
+//        base.OnModelCreating(builder);
+//        // Customize the ASP.NET Identity model and override the defaults if needed.
+//        // For example, you can rename the ASP.NET Identity table names and more.
+//        // Add your customizations after calling base.OnModelCreating(builder);
+//    }
+//}
