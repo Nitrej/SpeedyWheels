@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentalApp.Data
+namespace SpeedyWheels.Models
 {
     public class RentalDataContext : DbContext
     {

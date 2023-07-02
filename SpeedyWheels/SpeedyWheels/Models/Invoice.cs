@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentalApp.Data
+namespace SpeedyWheels.Models
 {
-    public class ClientOpinion
+    public class Invoice
     {
         [Key]
         public int Id { get; set; }
@@ -32,14 +32,14 @@ namespace RentalApp.Data
 
         [Required]
         [NotNull]
-        public int Rating { get; set; }
-
-        [MaxLength(200)]
-        public string Content { get; set; }
+        public DateTime IssueDate { get; set; }
 
         [Required]
         [NotNull]
-        public DateTime Date { get; set; }
+        public double amount { get; set; }
 
+        [Required]
+        [NotNull]
+        public bool PaymentStatus { get; set; }
     }
 }

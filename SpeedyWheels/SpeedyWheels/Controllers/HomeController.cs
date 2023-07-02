@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RentalApp.Data;
 using SpeedyWheels.Models;
 using SpeedyWheels.ViewModels;
 using System.Diagnostics;

@@ -2,45 +2,41 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentalApp.Data
+namespace SpeedyWheels.Models
 {
-    public class User
+    public class Services
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [NotNull]
-        [MaxLength(50)]
-        public string Name { get; set; }
+        public virtual int CarId { get; set; }
+
+        [ForeignKey("CarId")]
+        public virtual Car Car { get; set; }
 
         [Required]
         [NotNull]
-        [MaxLength(50)]
-        public string Email { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Required]
         [NotNull]
-        [MaxLength(100)]
-        public string Password { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Required]
         [NotNull]
-        [MaxLength(50)]
-        public string Salt { get; set; }
+        public double Cost { get; set; }
 
         [Required]
         [NotNull]
-        public bool IsAdmin { get; set; }
-
-        [Required]
-        [NotNull]
-        public bool IsActive { get; set; }
-
+        public string Description { get; set; }
     }
 }
