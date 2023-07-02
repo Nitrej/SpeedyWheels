@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace SpeedyWheels.Areas.Identity.Data;
 
 // Add profile data for application users by adding properties to the SpeedyWheelsUser class
-public class SpeedyWheelsUser : IdentityUser
+/*public class SpeedyWheelsUser : IdentityUser
 {
-}
+}*/
 

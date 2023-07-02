@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,10 @@ namespace SpeedyWheels.Models
         {
             modelBuilder.UseSerialColumns();
             modelBuilder.Entity<Client>(e => { e.HasIndex(e => e.UserId).IsUnique(); });
-        }   
+            modelBuilder.Entity<IdentityUserClaim<string>>().HasKey(p => new { p.Id });
+        }
 
+        public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Client> Clients { get; set; }
