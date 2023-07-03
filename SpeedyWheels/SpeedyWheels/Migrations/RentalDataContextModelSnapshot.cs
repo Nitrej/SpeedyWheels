@@ -84,8 +84,9 @@ namespace SpeedyWheels.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<DateTime>("ProductionDay")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<string>("ProductionYear")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()

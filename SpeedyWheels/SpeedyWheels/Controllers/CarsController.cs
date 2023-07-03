@@ -55,12 +55,12 @@ namespace SpeedyWheels.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CostPerHour,ProductionDay,Mileage,DoorCount,GearBox,SeatsCount,IsRented,Brand,RegistrationNumber,ImageAddress,IsActive")] Car car)
+        public async Task<IActionResult> Create([Bind("Id,Name,CostPerHour,ProductionYear,Mileage,DoorCount,GearBox,SeatsCount,IsRented,Brand,RegistrationNumber,ImageAddress,IsActive")] Car car)
         {
             if (ModelState.IsValid)
             {
                 var newCar = new Car();
-                newCar.ProductionDay = car.ProductionDay;
+                newCar.ProductionYear = car.ProductionYear;
                 newCar.CostPerHour = car.CostPerHour;
                 newCar.Brand = car.Brand;
                 newCar.Mileage = car.Mileage;
@@ -101,7 +101,7 @@ namespace SpeedyWheels.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CostPerHour,ProductionDay,Mileage,DoorCount,GearBox,SeatsCount,IsRented,Brand,RegistrationNumber,ImageAddress")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CostPerHour,ProductionYear,Mileage,DoorCount,GearBox,SeatsCount,IsRented,Brand,RegistrationNumber,ImageAddress")] Car car)
         {
             if (id != car.Id)
             {

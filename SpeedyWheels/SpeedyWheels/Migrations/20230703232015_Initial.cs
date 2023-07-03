@@ -20,7 +20,7 @@ namespace SpeedyWheels.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     CostPerHour = table.Column<int>(type: "integer", nullable: false),
-                    ProductionDay = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ProductionYear = table.Column<string>(type: "text", nullable: false),
                     Mileage = table.Column<double>(type: "double precision", nullable: false),
                     DoorCount = table.Column<int>(type: "integer", nullable: false),
                     GearBox = table.Column<char>(type: "character(1)", nullable: false),
@@ -28,7 +28,8 @@ namespace SpeedyWheels.Migrations
                     IsRented = table.Column<bool>(type: "boolean", nullable: false),
                     Brand = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     RegistrationNumber = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    ImageAddress = table.Column<string>(type: "text", nullable: false)
+                    ImageAddress = table.Column<string>(type: "text", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,8 +85,8 @@ namespace SpeedyWheels.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CarId = table.Column<int>(type: "integer", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Cost = table.Column<double>(type: "double precision", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false)
                 },
@@ -110,7 +111,7 @@ namespace SpeedyWheels.Migrations
                     Surname = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DriverLicenseNr = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: false)
@@ -135,8 +136,9 @@ namespace SpeedyWheels.Migrations
                     ClientId = table.Column<int>(type: "integer", nullable: false),
                     CarId = table.Column<int>(type: "integer", nullable: false),
                     HourCount = table.Column<int>(type: "integer", nullable: false),
-                    RentDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Cost = table.Column<double>(type: "double precision", nullable: false)
+                    RentDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Cost = table.Column<double>(type: "double precision", nullable: false),
+                    IsRated = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,7 +167,7 @@ namespace SpeedyWheels.Migrations
                     ClientId = table.Column<int>(type: "integer", nullable: false),
                     Rating = table.Column<int>(type: "integer", nullable: false),
                     Content = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -192,7 +194,7 @@ namespace SpeedyWheels.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     RentalId = table.Column<int>(type: "integer", nullable: false),
                     ClientId = table.Column<int>(type: "integer", nullable: false),
-                    IssueDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IssueDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     amount = table.Column<double>(type: "double precision", nullable: false),
                     PaymentStatus = table.Column<bool>(type: "boolean", nullable: false)
                 },

@@ -30,7 +30,7 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
-        [DisplayName("Data produkcji")]
+        [DisplayName("Rok produkcji")]
         public string ProductionYear { get; set; }
 
         [Required]

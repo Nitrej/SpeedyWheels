@@ -33,7 +33,7 @@ namespace SpeedyWheels.Controllers
                 ImageAddress = m.ImageAddress,
                 IsRented = m.IsRented,
                 Mileage = m.Mileage,
-                ProductionYear = m.ProductionDay.Year.ToString(),
+                ProductionYear = m.ProductionYear,
                 RegistrationNumber = m.RegistrationNumber,
                 SeatsCount = m.SeatsCount,
             });

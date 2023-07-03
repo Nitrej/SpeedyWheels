@@ -24,7 +24,7 @@ namespace SpeedyWheels.Controllers
             {
                 Brand = m.Brand,
                 Name = m.Name,
-                ProductionYear = m.ProductionDay.Year.ToString(),
+                ProductionYear = m.ProductionYear,
                 CostPerHour = m.CostPerHour,
                 ImgUrl = m.ImageAddress,
                 Id = m.Id

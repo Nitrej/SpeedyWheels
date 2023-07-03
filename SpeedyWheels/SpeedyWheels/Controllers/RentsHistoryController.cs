@@ -30,7 +30,7 @@ namespace SpeedyWheels.Controllers
                 CostPerHour = m.Car.CostPerHour,
                 HourCount = m.HourCount,
                 ImgUrl = m.Car.ImageAddress,
-                ProductionYear = m.Car.ProductionDay.Year.ToString(),
+                ProductionYear = m.Car.ProductionYear,
                 RentDate = m.RentDate,
                 IsRated = m.IsRated
             });

@@ -12,8 +12,8 @@ using SpeedyWheels.Models;
 namespace SpeedyWheels.Migrations
 {
     [DbContext(typeof(RentalDataContext))]
-    [Migration("20230703191124_carupdate")]
-    partial class carupdate
+    [Migration("20230703232015_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,8 +87,9 @@ namespace SpeedyWheels.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<DateTime>("ProductionDay")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("ProductionYear")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
@@ -117,7 +118,7 @@ namespace SpeedyWheels.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DriverLicenseNr")
                         .IsRequired()
@@ -171,7 +172,7 @@ namespace SpeedyWheels.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
@@ -200,7 +201,7 @@ namespace SpeedyWheels.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("IssueDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("PaymentStatus")
                         .HasColumnType("boolean");
@@ -240,8 +241,11 @@ namespace SpeedyWheels.Migrations
                     b.Property<int>("HourCount")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsRated")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("RentDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -271,10 +275,10 @@ namespace SpeedyWheels.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
