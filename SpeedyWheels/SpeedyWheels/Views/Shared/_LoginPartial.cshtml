@@ -3,12 +3,18 @@
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+@inject RentalDataContext _rentalDataContext
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+<li class="nav-item">
+            @{
+                var userId = UserManager.GetUserId(User);
+                var client = _rentalDataContext.Clients.FirstOrDefault(c => c.UserId == userId);
+                var name = $"{client?.Name} {client?.Surname}" ?? UserManager.GetUserName(User);
+            }
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @name!</a>
     </li>
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

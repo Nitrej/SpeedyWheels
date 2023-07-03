@@ -156,8 +156,11 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                 client.DriverLicenseNr = "EMPTY";
                 client.BirthDate = Input.Date.ToUniversalTime();
                 client.IsActive = true;
+
                 
-                
+
+
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -178,6 +181,11 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
+
+                    var cl = new System.Security.Claims.Claim("commonUser", code);
+                    await _userManager.AddClaimAsync(user, cl);
+                    
+
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
@@ -225,6 +233,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+
 
         private IUserEmailStore<User> GetEmailStore()
         {
