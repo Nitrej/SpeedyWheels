@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 builder.Services.AddDbContext<RentalDataContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("RentalDb"), b => b.MigrationsAssembly("SpeedyWheels")));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false) /*upraszczam se robote na razie zrobie potem bo tera mi sie nie chce*/
@@ -35,6 +37,9 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "CarDetails",
     pattern: "{controller=CarDetails}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "Cars",
+    pattern: "{controller=Cars}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();
