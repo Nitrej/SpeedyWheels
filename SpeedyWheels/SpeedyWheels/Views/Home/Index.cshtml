@@ -24,34 +24,23 @@
                 <h1 style="float: right; padding: 5pt;"> @car.Brand @car.Name</h1>
                 <p style="float: right; clear: both; padding: 5pt;">@car.ProductionYear</p>
                 <h3 style="float: right; clear: both; padding: 5pt;">@car.CostPerHour zł/h</h3>
-                <button style="float: right; clear: both; padding: 5pt;" class="spr btn btn-primary" value="@car.Id">Sprawdz</button>
+                <button style="float: right; clear: both; padding: 5pt;" class="spr btn btn-primary" value="@car.Id" onclick="changeHref(this.value)">Sprawdz</button>
             </div>
         </div>
     }
 </div>
+
+<script>
+    function changeHref(id) {
+        console.log(id);
+        var url = '@Url.Action("Index", "CarDetails")';
+        window.location.href = url + '/?id=' + id;
+    }
+
+</script>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-            $(".spr").click(function () {
-            var ID = $(this).val();
-            $.ajax({
-                url: '@Url.Action("Index","CarDetails")',
-                type: 'GET',
-                data: {
-                    id: ID
-                },
-                success: function (result) {
-                    console.log(ID);
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        });
-    });
-</script>

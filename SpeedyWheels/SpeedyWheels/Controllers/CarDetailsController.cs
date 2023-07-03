@@ -12,10 +12,23 @@ namespace SpeedyWheels.Controllers
             this.context = context;
         }
 
-        [HttpGet]
         public IActionResult Index(int id)
         {
-            var car = this.context.Cars.Where(o => o.Id == id);
+            var car = this.context.Cars.Where(o => o.Id == id).Select(m => new CarDetailsViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Brand = m.Brand,
+                CostPerHour = m.CostPerHour,
+                DoorCount = m.DoorCount,
+                GearBox = m.GearBox,
+                ImageAddress = m.ImageAddress,
+                IsRented = m.IsRented,
+                Mileage = m.Mileage,
+                ProductionYear = m.ProductionDay.Year.ToString(),
+                RegistrationNumber = m.RegistrationNumber,
+                SeatsCount = m.SeatsCount,
+            });
             return View(car);
         }
     }
