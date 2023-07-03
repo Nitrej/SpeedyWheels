@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using SpeedyWheels.Models;
 using SpeedyWheels.ViewModels;
 using System.Diagnostics;
+using System.Net.Mail;
+using System.Net;
 
 namespace SpeedyWheels.Controllers
 {
@@ -36,9 +39,16 @@ namespace SpeedyWheels.Controllers
         }
 
 
-        public IActionResult Privacy()
+        public IActionResult Contact()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Email()
+        {
+            //brak implementacji obsługi wysłania email
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

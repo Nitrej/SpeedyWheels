@@ -15,11 +15,9 @@ namespace SpeedyWheels.Controllers
     public class CarDetailsController : Controller
     {
         private readonly RentalDataContext context;
-        private readonly UserManager<User> userManager;
-        public CarDetailsController(RentalDataContext context, UserManager<User> userManager)
+        public CarDetailsController(RentalDataContext context)
         {
             this.context = context;
-            this.userManager = userManager;
         }
 
         public IActionResult Index(int id)
@@ -59,6 +57,8 @@ namespace SpeedyWheels.Controllers
             else rent.HourCount = duration.Hours + duration.Days * 24;
 
             rent.Cost = rent.HourCount * this.context.Cars.FirstOrDefault(i => i.Id == id).CostPerHour;
+
+            rent.IsRated = false;
 
             this.context.Rentals.Add(rent);
 

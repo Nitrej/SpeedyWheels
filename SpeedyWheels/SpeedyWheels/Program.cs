@@ -44,6 +44,9 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "Cars",
     pattern: "{controller=Cars}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "RentsHistory",
+    pattern: "{controller=RentsHistory}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

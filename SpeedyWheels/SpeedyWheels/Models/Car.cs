@@ -31,8 +31,7 @@ namespace SpeedyWheels.Models
         [Required]
         [NotNull]
         [DisplayName("Data produkcji")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime ProductionDay { get; set; }
+        public string ProductionYear { get; set; }
 
         [Required]
         [NotNull]
