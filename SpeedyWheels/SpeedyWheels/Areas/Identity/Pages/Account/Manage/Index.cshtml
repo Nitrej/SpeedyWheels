@@ -11,9 +11,25 @@
     <div class="col-md-6">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
+            @*<div class="form-floating">
                 <input asp-for="Username" class="form-control" disabled />
                 <label asp-for="Username" class="form-label"></label>
+            </div>*@
+            <div class="form-floating">
+                <input asp-for="Input.FirstName" class="form-control"/>
+                <label asp-for="Input.FirstName" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control"/>
+                <label asp-for="Input.LastName" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Adres" class="form-control"  />
+                <label asp-for="Input.Adres" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.DriverLicenseNumber" class="form-control"  />
+                <label asp-for="Input.DriverLicenseNumber" class="form-label"></label>
             </div>
             <div class="form-floating">
                 <input asp-for="Input.PhoneNumber" class="form-control" />
