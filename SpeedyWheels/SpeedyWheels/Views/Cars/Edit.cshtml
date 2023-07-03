@@ -1,0 +1,91 @@
+﻿@model SpeedyWheels.Models.Car
+
+@{
+    ViewData["Title"] = "Edycja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edytuj</h1>
+
+<h4>Samochód</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CostPerHour" class="control-label"></label>
+                <input asp-for="CostPerHour" class="form-control" />
+                <span asp-validation-for="CostPerHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductionDay" class="control-label"></label>
+                <input asp-for="ProductionDay" class="form-control" />
+                <span asp-validation-for="ProductionDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mileage" class="control-label"></label>
+                <input asp-for="Mileage" class="form-control" />
+                <span asp-validation-for="Mileage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoorCount" class="control-label"></label>
+                <input asp-for="DoorCount" class="form-control" />
+                <span asp-validation-for="DoorCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GearBox" class="control-label"></label>
+                <input asp-for="GearBox" class="form-control" />
+                <span asp-validation-for="GearBox" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeatsCount" class="control-label"></label>
+                <input asp-for="SeatsCount" class="form-control" />
+                <span asp-validation-for="SeatsCount" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsRented" /> @Html.DisplayNameFor(model => model.IsRented)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <input asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageAddress" class="control-label"></label>
+                <input asp-for="ImageAddress" class="form-control" />
+                <span asp-validation-for="ImageAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powrót do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
