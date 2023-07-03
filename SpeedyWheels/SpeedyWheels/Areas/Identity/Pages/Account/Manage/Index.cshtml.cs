@@ -88,6 +88,8 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
+            
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -115,5 +117,6 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account.Manage
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
+
     }
 }
