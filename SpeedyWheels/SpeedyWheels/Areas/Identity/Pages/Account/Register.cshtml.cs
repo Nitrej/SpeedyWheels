@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SpeedyWheels.Areas.Identity.Data;
 using SpeedyWheels.Models;
@@ -32,7 +33,11 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        private readonly UserManager<Client> _clientManager;
+        private readonly IUserStore<Client> _clientStore;
+
         public RegisterModel(
+            
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
@@ -72,6 +77,14 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [DataType(DataType.Text)]
+            [Display(Name = "FirsName")]
+            public string FirstName { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+
             //[Required]
             //[DataType(DataType.Text)]
             //[Display(Name = "User Name")]
@@ -118,17 +131,26 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                var client = CreateClient();
+
                 var user = CreateUser();
                 //user.UserName = Input.UserName; 
-
+                user.IsActive = true;
+                client.User = user;
+                client.Name = Input.FirstName;
+                client.Surname = Input.LastName;
+                
+                
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                //await _clientManager.CreateAsync(client);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-
+                    
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -171,6 +193,16 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
                     $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
+        }
+        private Client CreateClient() {
+            try {
+                return Activator.CreateInstance<Client>();
+            }
+            catch {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(Client)}'. " +
+                    $"Ensure that '{nameof(Client)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
