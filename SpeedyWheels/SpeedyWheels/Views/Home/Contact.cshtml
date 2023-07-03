@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Kontakt";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>SpeedyWheels Sp. z o.o.</h2>
+        <p>Ul. Przykładowa 123</p>
+        <p>00-000 Warszawa</p>
+        <p>Polska</p>
+    </div>
+    <div class="col-md-6">
+        <h2>Dane kontaktowe</h2>
+        <p>Telefon: +48 123 456 789</p>
+        <p>Email: info@speedywheels.com</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Godziny pracy</h2>
+        <p>Poniedziałek - Piątek: 9:00 - 17:00</p>
+        <p>Sobota - Niedziela: Zamknięte</p>
+    </div>
+    <div class="col-md-6">
+        <h2>Formularz kontaktowy</h2>
+        <form asp-controller="Home" asp-action="Email" method="post">
+            <div class="form-group">
+                <label for="name">Imię i nazwisko:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adres email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Wiadomość:</label>
+                <textarea class="form-control" id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Wyślij</button>
+        </form>
+    </div>
+</div>
+

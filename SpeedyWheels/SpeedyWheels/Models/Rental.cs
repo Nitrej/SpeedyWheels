@@ -40,6 +40,10 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
-        public double Cost { get; set; }    
+        public double Cost { get; set; }
+
+        [Required]
+        [NotNull]
+        public bool IsRated { get; set; }
     }
 }
