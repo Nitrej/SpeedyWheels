@@ -33,8 +33,11 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        private readonly UserManager<Client> _clientManager;
-        private readonly IUserStore<Client> _clientStore;
+        //private readonly UserManager<Client> _clientManager;
+        //private readonly IUserStore<Client> _clientStore;
+
+        private readonly RentalDataContext _rentalDataContext;
+        private readonly Client _clientContext;
 
         public RegisterModel(
             
@@ -42,7 +45,8 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RentalDataContext rentalDataContext)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -50,6 +54,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _rentalDataContext = rentalDataContext;
         }
 
         /// <summary>
@@ -84,6 +89,11 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             [Display(Name = "LastName")]
             public string LastName { get; set; }
+
+            
+            [DataType(DataType.Date)]
+            [Display(Name = "BirthDate")]
+            public DateTime Date { get; set; }
 
             //[Required]
             //[DataType(DataType.Text)]
@@ -132,19 +142,28 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var client = CreateClient();
-
+                //var client = new Client();
                 var user = CreateUser();
+                
                 //user.UserName = Input.UserName; 
                 user.IsActive = true;
+
                 client.User = user;
                 client.Name = Input.FirstName;
                 client.Surname = Input.LastName;
+                client.Address = "EMPTY";
+                client.PhoneNumber = "EMPTY";
+                client.DriverLicenseNr = "EMPTY";
+                client.BirthDate = Input.Date.ToUniversalTime();
+                client.IsActive = true;
                 
                 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                _rentalDataContext.Clients.Add(client);
+                await _rentalDataContext.SaveChangesAsync();
                 //await _clientManager.CreateAsync(client);
 
                 if (result.Succeeded)

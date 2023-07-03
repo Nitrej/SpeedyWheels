@@ -27,6 +27,11 @@
                 <label asp-for="Input.LastName"></label>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
+            <div class="input-group date" data-provide="datepicker">
+                <input asp-for="Input.Date" class="form-control" autocomplete="date" aria-required="true" />
+                <label asp-for="Input.Date"></label>
+                <span asp-validation-for="Input.Date" class="text-danger"></span>
+            </div>
             <div class="form-floating">
                 <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" />
                 <label asp-for="Input.Email"></label>
