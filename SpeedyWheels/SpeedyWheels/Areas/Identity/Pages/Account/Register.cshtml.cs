@@ -139,25 +139,30 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 var client = CreateClient();
                 //var client = new Client();
                 var user = CreateUser();
-                
+
                 //user.UserName = Input.UserName; 
                 user.IsActive = true;
 
                 client.User = user;
-                client.Name = Input.FirstName;
-                client.Surname = Input.LastName;
+                if (Input.FirstName != null) { client.Name = Input.FirstName; }
+                else { client.Name = "EMPTY"; }
+                if (Input.LastName != null) { client.Surname = Input.LastName; }
+                else { client.Surname = "EMPYT"; }
                 client.Address = "EMPTY";
                 client.PhoneNumber = "EMPTY";
                 client.DriverLicenseNr = "EMPTY";
                 client.BirthDate = Input.Date.ToUniversalTime();
                 client.IsActive = true;
 
-                
+                var age = DateTime.Today.Year - Input.Date.Year;
+                if (DateTime.Today < Input.Date.AddYears(age)) {
+                    ModelState.AddModelError(string.Empty, "Musisz mieć co najmniej 18 lat, aby założyć konto");
+                    return Page();
+                }
 
 
 

@@ -13,8 +13,9 @@
                 var userId = UserManager.GetUserId(User);
                 var client = _rentalDataContext.Clients.FirstOrDefault(c => c.UserId == userId);
                 var name = $"{client?.Name} {client?.Surname}" ?? UserManager.GetUserName(User);
+                if (client?.Name == "EMPTY" || client?.Surname == "EMPTY") { name = UserManager.GetUserName(User); }
             }
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @name!</a>
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Witaj @name!</a>
     </li>
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
