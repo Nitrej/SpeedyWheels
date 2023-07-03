@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using System.Data;
 using Microsoft.Build.Framework;
+using NuGet.Protocol.Plugins;
+using System.Security.Principal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SpeedyWheels.Controllers
 {
@@ -39,6 +42,7 @@ namespace SpeedyWheels.Controllers
             return View(car);
         }
         [HttpPost]
+        [Authorize]
         public IActionResult Rent(int id, string st, string ed)
         {
             DateTime start = DateTime.Parse(st);
@@ -49,7 +53,6 @@ namespace SpeedyWheels.Controllers
             rent.CarId = id;
 
             rent.ClientId = this.context.Clients.FirstOrDefault(i => i.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).Id;
-
             TimeSpan duration = end.Subtract(start);
 
             if(duration.Minutes>0) rent.HourCount = duration.Hours + 1 + duration.Days * 24;

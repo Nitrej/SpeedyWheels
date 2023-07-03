@@ -22,8 +22,8 @@
 
                 <form asp-controller="CarDetails" asp-action="Rent" method="post" style="float: right; clear: both; padding: 5pt;">
                     <input style="visibility: hidden" type="number" name="id" readonly value="@car.Id"></input>
-                    <label style="float: right; clear: both; padding: 5pt;">Od :<input type="date" name="st"></input></label>
-                    <label style="float: right; clear: both; padding: 5pt;">Do :<input type="date" name="ed"></input></label>
+                    <label style="float: right; clear: both; padding: 5pt;">Od :<input type="datetime-local" required name="st"></input></label>
+                    <label style="float: right; clear: both; padding: 5pt;">Do :<input type="datetime-local" required name="ed"></input></label>
                     <input style ="float: right; clear: both; padding: 5pt;" type="submit" value="Zarezerwuj"></input>
                 </form>
                 
