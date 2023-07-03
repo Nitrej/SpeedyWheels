@@ -17,6 +17,10 @@ builder.Services.AddDbContext<RentalDataContext>(o => o.UseNpgsql(builder.Config
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false) /*upraszczam se robote na razie zrobie potem bo tera mi sie nie chce*/
     .AddEntityFrameworkStores<RentalDataContext>();
 
+#region Authorization
+AddAuthorizationPolicies(builder.Services);
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,3 +50,9 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+void AddAuthorizationPolicies(IServiceCollection services) {
+    services.AddAuthorization(options => {
+        options.AddPolicy("commonUserOnly", policy => policy.RequireClaim("commonUserNumber"));
+    });
+}
