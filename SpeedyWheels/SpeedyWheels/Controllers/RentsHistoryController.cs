@@ -62,5 +62,30 @@ namespace SpeedyWheels.Controllers
 
             return RedirectToAction("Index");
         }
+        [Authorize]
+        public IActionResult SeeAll()
+        {
+            var rent = this.context.Rentals.Include("Car").Include("Client").Select(m => new HistoryViewModel
+            {
+                Id = m.Id,
+                Brand = m.Car.Brand,
+                Name = m.Car.Name,
+                CarId = m.CarId,
+                ClientId = m.ClientId,
+                Cost = m.Cost,
+                CostPerHour = m.Car.CostPerHour,
+                HourCount = m.HourCount,
+                ImgUrl = m.Car.ImageAddress,
+                ProductionYear = m.Car.ProductionYear,
+                RentDate = m.RentDate,
+                IsRated = m.IsRated
+            });
+            return View(rent);
+        }
+        public IActionResult GoToRate()
+        {
+            
+            return View();
+        }
     }
 }
