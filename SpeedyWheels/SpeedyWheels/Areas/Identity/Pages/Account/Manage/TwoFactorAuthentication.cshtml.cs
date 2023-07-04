@@ -147,6 +147,9 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account.Manage
             await _emailStore.SetEmailAsync(newUser, Input.Email, CancellationToken.None);
             var result = await _userManager.CreateAsync(newUser, Input.Password);
 
+            newClient.UserId = newUser.Id;
+            newClient.User = newUser;
+
             _rentalDataContext.Clients.Add(newClient);
             await _rentalDataContext.SaveChangesAsync();
             var cl = new System.Security.Claims.Claim("Operator", "true");
