@@ -82,27 +82,32 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "FirsName")]
             public string FirstName { get; set; }
 
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "LastName")]
             public string LastName { get; set; }
 
-            
+            [Required]
             [DataType(DataType.Date)]
             [Display(Name = "BirthDate")]
             public DateTime Date { get; set; }
 
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Phone Number")]
             public string PhoneNumber { get; set; }
 
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Driver license number")]
             public string DriverLicense { get; set; }
 
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Adres")]
             public string Adres { get; set; }
@@ -201,7 +206,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    var cl = new System.Security.Claims.Claim("commonUser", code);
+                    var cl = new System.Security.Claims.Claim("commonUser", "true");
                     await _userManager.AddClaimAsync(user, cl);
                     //await _userManager.AddToRoleAsync(user, "Admin");
 
