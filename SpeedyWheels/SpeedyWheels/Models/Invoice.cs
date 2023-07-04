@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlTypes;
@@ -32,14 +33,17 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
+        [DisplayName("Data Wydania")]
         public DateTime IssueDate { get; set; }
 
         [Required]
         [NotNull]
+        [DisplayName("Kwota")]
         public double amount { get; set; }
 
         [Required]
         [NotNull]
+        [DisplayName("Stan zapłacenia")]
         public bool PaymentStatus { get; set; }
     }
 }

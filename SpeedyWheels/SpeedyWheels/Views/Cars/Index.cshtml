@@ -11,7 +11,7 @@
     <a asp-action="Create">Dodaj pojazd</a>
 </p>
 <table class="table table-bordered table-striped" >
-    <theadc class="bg-primary">
+    <theadc>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -95,6 +95,7 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Datale</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                <a asp-action="Create" asp-controller="Services" asp-route-id="@item.Id">Dodaj notatkę serwisową</a>
             </td>
         </tr>
 }

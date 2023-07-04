@@ -58,6 +58,13 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "Clients",
     pattern: "{controller=Clients}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "Invoices",
+    pattern: "{controller=Invoices}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "Services",
+    pattern: "{controller=Services}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 void AddAuthorizationPolicies(IServiceCollection services) {

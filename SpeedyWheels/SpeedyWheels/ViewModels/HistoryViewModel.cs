@@ -28,5 +28,7 @@ namespace SpeedyWheels.ViewModels
         public double Cost { get; set; }
 
         public bool IsRated { get; set; }
+
+        public int InvoiceId{ get; set; }
     }
 }

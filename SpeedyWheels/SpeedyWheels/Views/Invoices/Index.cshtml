@@ -1,13 +1,13 @@
-﻿@model IEnumerable<SpeedyWheels.Models.ClientOpinion>
+﻿@model IEnumerable<SpeedyWheels.Models.Invoice>
 
 @{
-    ViewData["Title"] = "Oceny";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Oceny</h1>
+<h1>Index</h1>
 
-<table class="table table-bordered table-striped">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -23,13 +23,13 @@
                 @Html.DisplayNameFor(model => model.Client.PhoneNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rating)
+                @Html.DisplayNameFor(model => model.IssueDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
+                @Html.DisplayNameFor(model => model.amount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.DisplayNameFor(model => model.PaymentStatus)
             </th>
             <th></th>
         </tr>
@@ -38,7 +38,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Rental.Id)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Client.Name)
@@ -50,17 +50,18 @@
                 @Html.DisplayFor(modelItem => item.Client.PhoneNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rating)
+                @Html.DisplayFor(modelItem => item.IssueDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
+                @Html.DisplayFor(modelItem => item.amount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.PaymentStatus)
             </td>
             <td>
-                    <a asp-action="Details" asp-controller="Clients" asp-route-id="@item.ClientId">Dane klienta</a> |
-                    <a asp-action="Index" asp-controller="CarDetails" asp-route-id="@item.Rental.CarId">Dane samochodu</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

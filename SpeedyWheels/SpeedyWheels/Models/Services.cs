@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlTypes;
@@ -25,18 +26,22 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
+        [DisplayName("Data Rozpoczęcia")]
         public DateTime StartDate { get; set; }
 
         [Required]
         [NotNull]
+        [DisplayName("Data Zakończenia")]
         public DateTime EndDate { get; set; }
 
         [Required]
         [NotNull]
+        [DisplayName("Koszt")]
         public double Cost { get; set; }
 
         [Required]
         [NotNull]
+        [DisplayName("Opis")]
         public string Description { get; set; }
     }
 }

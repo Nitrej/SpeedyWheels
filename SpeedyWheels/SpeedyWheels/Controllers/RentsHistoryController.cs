@@ -87,5 +87,10 @@ namespace SpeedyWheels.Controllers
             var op = this.context.ClientOpinions.FirstOrDefault(i => i.RentalId == id);
             return RedirectToAction("Details","ClientOpinions", new {id = op.Id});
         }
+        public IActionResult GoToInvoice(int id)
+        {
+            var inv = this.context.Invoices.FirstOrDefault(i => i.RentalId == id);
+            return RedirectToAction("Details", "Invoices", new { id = inv.Id });
+        }
     }
 }

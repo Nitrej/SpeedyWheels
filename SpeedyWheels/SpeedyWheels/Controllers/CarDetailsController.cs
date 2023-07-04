@@ -64,6 +64,19 @@ namespace SpeedyWheels.Controllers
 
             this.context.Cars.FirstOrDefault(i => i.Id == id).IsRented = true;
 
+
+            var invoice = new Invoice();
+
+            invoice.IssueDate = DateTime.Now;
+            invoice.amount = rent.Cost;
+            invoice.PaymentStatus = false;
+            invoice.ClientId = rent.ClientId;
+            invoice.Client = rent.Client;
+            invoice.Rental = rent;
+            invoice.RentalId = rent.Id;
+
+            this.context.Invoices.Add(invoice);
+
             this.context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
