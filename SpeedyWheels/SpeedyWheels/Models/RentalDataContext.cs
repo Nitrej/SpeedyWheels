@@ -21,7 +21,6 @@ namespace SpeedyWheels.Models
             modelBuilder.Entity<IdentityUserClaim<string>>().HasKey(p => new { p.Id });
         }
 
-        public DbSet<IdentityRole> identityRoles { get; set; }
         public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Car> Cars { get; set; }
@@ -30,5 +29,6 @@ namespace SpeedyWheels.Models
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<Services> Services { get; set; }
+
     }
 }

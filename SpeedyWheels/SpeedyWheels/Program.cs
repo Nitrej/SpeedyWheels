@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using SpeedyWheels.Areas.Identity.Data;
 using SpeedyWheels.Models;
 using User = SpeedyWheels.Models.User;
@@ -35,6 +36,8 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 
+var serviceProvider = app.Services;
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -49,10 +52,38 @@ app.MapControllerRoute(
     pattern: "{controller=RentsHistory}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-app.Run();
-
 void AddAuthorizationPolicies(IServiceCollection services) {
     services.AddAuthorization(options => {
         options.AddPolicy("commonUserOnly", policy => policy.RequireClaim("commonUserNumber"));
     });
 }
+
+
+//var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+//var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+
+//string[] roles = { "Admin", "Manager", "Member" };
+
+//foreach (var role in roles) {
+//    if (!await roleManager.RoleExistsAsync(role)) {
+//        await roleManager.CreateAsync(new IdentityRole(role));
+//    }
+//}
+
+//var powerUser = new IdentityUser {
+
+//    UserName = "poweruser@example.com",
+//    Email = "poweruser@example.com"
+//};
+//await userManager.CreateAsync(powerUser, "Password123!");
+
+//// Przypisanie roli admina do power usera
+//await userManager.AddToRoleAsync(powerUser, "Admin");
+
+app.Run();
+
+
+
+
+
