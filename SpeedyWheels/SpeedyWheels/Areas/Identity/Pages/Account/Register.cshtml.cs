@@ -206,7 +206,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    var cl = new System.Security.Claims.Claim("Operator", "true");
+                    var cl = new System.Security.Claims.Claim("commonUser", "true");
                     await _userManager.AddClaimAsync(user, cl);
                     //await _userManager.AddToRoleAsync(user, "Admin");
 
