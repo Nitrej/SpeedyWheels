@@ -20,7 +20,7 @@ namespace SpeedyWheels.Controllers
         public IActionResult Index(string pattern)
         {
             
-            var cars = this.context.Cars.Where(o => o.IsRented==false && o.IsActive == true).Select(m => new CarSearchViewModel
+            var cars = this.context.Cars.Where(o => o.IsRented==false && o.IsActive == true).OrderBy(o => o.Id).Select(m => new CarSearchViewModel
             {
                 Brand = m.Brand,
                 Name = m.Name,

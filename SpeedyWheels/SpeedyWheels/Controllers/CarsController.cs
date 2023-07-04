@@ -24,7 +24,7 @@ namespace SpeedyWheels.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Cars != null ? 
-                          View(await _context.Cars.ToListAsync()) :
+                          View(await _context.Cars.OrderBy(o => o.Id).ToListAsync()) :
                           Problem("Entity set 'RentalDataContext.Cars'  is null.");
         }
 

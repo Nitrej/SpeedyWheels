@@ -23,7 +23,7 @@ namespace SpeedyWheels.Controllers
         [Authorize(Policy = "administratorOnly")]
         public async Task<IActionResult> Index()
         {
-            var rentalDataContext = _context.Services.Include(s => s.Car);
+            var rentalDataContext = _context.Services.Include(s => s.Car).OrderBy(o => o.Id);
             return View(await rentalDataContext.ToListAsync());
         }
 
@@ -49,8 +49,7 @@ namespace SpeedyWheels.Controllers
         // GET: Services/Create
         public IActionResult Create(int id)
         {
-            //ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Brand");
-            ViewData["CarId"] = id;
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Id", id);
             return View();
         }
 
@@ -61,13 +60,15 @@ namespace SpeedyWheels.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CarId,StartDate,EndDate,Cost,Description")] Services services)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(services);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Brand", services.CarId);
+            services.CarId = services.Id;
+            services.Id = 0;
+            services.Car = _context.Cars.FirstOrDefault(i => i.Id == services.CarId);
+
+            _context.Add(services);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Id", services.CarId);
             return View(services);
         }
 
@@ -79,12 +80,12 @@ namespace SpeedyWheels.Controllers
                 return NotFound();
             }
 
-            var services = await _context.Services.FindAsync(id);
+            var services = await _context.Services.Include(i => i.Car).FirstOrDefaultAsync(m => m.Id == id);
             if (services == null)
             {
                 return NotFound();
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Brand", services.CarId);
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Id", services.CarId);
             return View(services);
         }
 
@@ -100,26 +101,26 @@ namespace SpeedyWheels.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            services.Car = _context.Cars.FirstOrDefault(i => i.Id == services.CarId);
+
+            try
             {
-                try
-                {
-                    _context.Update(services);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ServicesExists(services.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(services);
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ServicesExists(services.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+            
             ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Brand", services.CarId);
             return View(services);
         }
