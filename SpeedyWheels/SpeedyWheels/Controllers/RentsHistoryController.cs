@@ -62,8 +62,7 @@ namespace SpeedyWheels.Controllers
 
             return RedirectToAction("Index");
         }
-        [Authorize]
-        [Authorize(Policy = "administratorOnly")]
+        [Authorize(Policy = "moderatorsOnly")]
         public IActionResult AllHistory()
         {
             var rent = this.context.Rentals.Include("Car").Include("Client").OrderBy(o => o.Id).Select(m => new HistoryViewModel

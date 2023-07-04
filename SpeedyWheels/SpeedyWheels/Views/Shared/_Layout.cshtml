@@ -34,19 +34,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="RentsHistory" asp-action="Index">Historia</a>
                         </li>
-                        @if (User.HasClaim("Administrator", "true")) {
+                        @if (User.HasClaim("Administrator", "true") || User.HasClaim("Operator", "true")) {                           
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Główna</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Samochody admina</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="RentsHistory" asp-action="Index">Historia</a>
-                            </li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Samochody admina</a>  
+                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="RentsHistory" asp-action="AllHistory">Historia admin</a>
                             </li>
