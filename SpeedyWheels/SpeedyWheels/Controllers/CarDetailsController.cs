@@ -39,6 +39,25 @@ namespace SpeedyWheels.Controllers
             });
             return View(car);
         }
+        public IActionResult Details(int id)
+        {
+            var car = this.context.Cars.Where(o => o.Id == id).Select(m => new CarDetailsViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Brand = m.Brand,
+                CostPerHour = m.CostPerHour,
+                DoorCount = m.DoorCount,
+                GearBox = m.GearBox,
+                ImageAddress = m.ImageAddress,
+                IsRented = m.IsRented,
+                Mileage = m.Mileage,
+                ProductionYear = m.ProductionYear,
+                RegistrationNumber = m.RegistrationNumber,
+                SeatsCount = m.SeatsCount,
+            });
+            return View(car);
+        }
         [HttpPost]
         [Authorize]
         public IActionResult Rent(int id, string st, string ed)

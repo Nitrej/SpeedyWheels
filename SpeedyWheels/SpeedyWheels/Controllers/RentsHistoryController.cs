@@ -38,7 +38,7 @@ namespace SpeedyWheels.Controllers
         }
         public IActionResult Details(int id) 
         {
-            return RedirectToAction("Index","CarDetails", new { id = id });
+            return RedirectToAction("Details","CarDetails", new { id = id });
         }
 
         [HttpPost]
