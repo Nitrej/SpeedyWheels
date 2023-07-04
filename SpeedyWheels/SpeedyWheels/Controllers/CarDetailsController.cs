@@ -9,6 +9,7 @@ using Microsoft.Build.Framework;
 using NuGet.Protocol.Plugins;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpeedyWheels.Controllers
 {
@@ -83,8 +84,11 @@ namespace SpeedyWheels.Controllers
 
             this.context.Cars.FirstOrDefault(i => i.Id == id).IsRented = true;
 
+            /*użycia JPA (lub innego ORM) do obsługi bazy danych (wtedy oczywiście „współpraca
+            serwera z bazą danych (bez mapowania na obiekty, wykonywanie bezpośrednio zapytać
+            SQL)” z wymagań na ocenę 4 nie staje się nieaktualne)*/
 
-            var invoice = new Invoice();
+            /*var invoice = new Invoice();
 
             invoice.IssueDate = DateTime.Now;
             invoice.amount = rent.Cost;
@@ -96,7 +100,15 @@ namespace SpeedyWheels.Controllers
 
             this.context.Invoices.Add(invoice);
 
+            */
+
             this.context.SaveChanges();
+
+            context.Database.ExecuteSql($"INSERT INTO public.\"Invoices\"(\"RentalId\", \"ClientId\", \"IssueDate\", amount, \"PaymentStatus\") VALUES ({rent.Id}, {rent.ClientId}, {DateTime.Now}, {rent.Cost}, {false});");
+
+
+
+
 
             return RedirectToAction("Index", "Home");
         }
