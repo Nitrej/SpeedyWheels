@@ -37,7 +37,6 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         //private readonly IUserStore<Client> _clientStore;
 
         private readonly RentalDataContext _rentalDataContext;
-        private readonly Client _clientContext;
 
         public RegisterModel(
             

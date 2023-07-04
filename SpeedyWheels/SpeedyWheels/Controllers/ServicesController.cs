@@ -71,8 +71,6 @@ namespace SpeedyWheels.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Id", services.CarId);
-            return View(services);
         }
 
         // GET: Services/Edit/5
@@ -126,8 +124,6 @@ namespace SpeedyWheels.Controllers
             }
             return RedirectToAction(nameof(Index));
             
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Brand", services.CarId);
-            return View(services);
         }
 
         // GET: Services/Delete/5
