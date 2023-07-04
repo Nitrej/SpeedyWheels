@@ -84,27 +84,27 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "FirsName")]
+            [Display(Name = "Imie")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "LastName")]
+            [Display(Name = "Nazwisko")]
             public string LastName { get; set; }
 
             [Required]
             [DataType(DataType.Date)]
-            [Display(Name = "BirthDate")]
+            [Display(Name = "Data urodzenia")]
             public DateTime Date { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Phone Number")]
+            [Display(Name = "Numer Telefonu")]
             public string PhoneNumber { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Driver license number")]
+            [Display(Name = "Numer Prawa Jazdy")]
             public string DriverLicense { get; set; }
 
             [Required]
@@ -131,7 +131,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password*")]
+            [Display(Name = "Haslo*")]
             public string Password { get; set; }
 
             /// <summary>
@@ -139,8 +139,8 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Potwierdź Hasło")]
+            [Compare("Password", ErrorMessage = "Hasła się nie zgadzają.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -227,6 +227,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
+                    return Page();
                 }
             }
 
