@@ -128,6 +128,9 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                     {
                         new Claim("amr", "pwd")
                     };
+
+                    //var roles = await _signInManager.UserManager.GetRolesAsync(user);
+
                     await _signInManager.SignInWithClaimsAsync(user, Input.RememberMe, claims);
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

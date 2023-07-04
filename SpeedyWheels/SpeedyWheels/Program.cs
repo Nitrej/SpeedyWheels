@@ -69,32 +69,14 @@ app.MapRazorPages();
 
 void AddAuthorizationPolicies(IServiceCollection services) {
     services.AddAuthorization(options => {
-        options.AddPolicy("commonUserOnly", policy => policy.RequireClaim("commonUserNumber"));
+        options.AddPolicy("commonUserOnly", policy => policy.RequireClaim("commonUser"));
+        options.AddPolicy("operatorOnly", policy => policy.RequireClaim("Operator"));
+        options.AddPolicy("administratorOnly", policy => policy.RequireClaim("Administrator"));
     });
 }
 
 
-//var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-//var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-
-//string[] roles = { "Admin", "Manager", "Member" };
-
-//foreach (var role in roles) {
-//    if (!await roleManager.RoleExistsAsync(role)) {
-//        await roleManager.CreateAsync(new IdentityRole(role));
-//    }
-//}
-
-//var powerUser = new IdentityUser {
-
-//    UserName = "poweruser@example.com",
-//    Email = "poweruser@example.com"
-//};
-//await userManager.CreateAsync(powerUser, "Password123!");
-
-//// Przypisanie roli admina do power usera
-//await userManager.AddToRoleAsync(powerUser, "Admin");
 
 app.Run();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: ClientOpinions
+        [Authorize(Policy = "administratorOnly")]
         public async Task<IActionResult> Index()
         {
             var rentalDataContext = _context.ClientOpinions.Include(c => c.Client).Include(c => c.Rental);

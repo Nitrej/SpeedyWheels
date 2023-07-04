@@ -95,6 +95,17 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             [Display(Name = "BirthDate")]
             public DateTime Date { get; set; }
 
+            [DataType(DataType.Text)]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Driver license number")]
+            public string DriverLicense { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Adres")]
+            public string Adres { get; set; }
             //[Required]
             //[DataType(DataType.Text)]
             //[Display(Name = "User Name")]
@@ -105,7 +116,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Email*")]
             public string Email { get; set; }
 
             /// <summary>
@@ -115,7 +126,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Password*")]
             public string Password { get; set; }
 
             /// <summary>
@@ -151,15 +162,18 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                 if (Input.FirstName != null) { client.Name = Input.FirstName; }
                 else { client.Name = "EMPTY"; }
                 if (Input.LastName != null) { client.Surname = Input.LastName; }
-                else { client.Surname = "EMPYT"; }
-                client.Address = "EMPTY";
-                client.PhoneNumber = "EMPTY";
-                client.DriverLicenseNr = "EMPTY";
-                client.BirthDate = Input.Date.ToUniversalTime();
+                else { client.Surname = "EMPTY"; }
+                if(Input.Adres != null) { client.Address = Input.Adres; }
+                else { client.Address = "EMPTY"; }
+                if( client.PhoneNumber != null) { client.PhoneNumber = Input.PhoneNumber; }
+                else { client.PhoneNumber = "EMPTY"; }
+                if (client.DriverLicenseNr != null) { client.DriverLicenseNr = Input.DriverLicense; }
+                else { client.DriverLicenseNr = "EMPTY"; }
+                client.BirthDate = Input.Date.ToUniversalTime(); 
                 client.IsActive = true;
 
                 var age = DateTime.Today.Year - Input.Date.Year;
-                if (DateTime.Today < Input.Date.AddYears(age)) {
+                if (DateTime.Today > Input.Date.AddYears(age)) {
                     ModelState.AddModelError(string.Empty, "Musisz mieć co najmniej 18 lat, aby założyć konto");
                     return Page();
                 }
@@ -189,7 +203,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
 
                     var cl = new System.Security.Claims.Claim("commonUser", code);
                     await _userManager.AddClaimAsync(user, cl);
-                    await _userManager.AddToRoleAsync(user, "Member");
+                    //await _userManager.AddToRoleAsync(user, "Admin");
 
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
