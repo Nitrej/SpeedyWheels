@@ -27,6 +27,7 @@ namespace SpeedyWheels.Controllers
             return View(await rentalDataContext.ToListAsync());
         }
 
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.ClientOpinions == null)

@@ -28,6 +28,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Clients/Details/5
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Clients == null)
@@ -45,7 +46,7 @@ namespace SpeedyWheels.Controllers
 
             return View(client);
         }
-
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Clients == null)
@@ -67,6 +68,7 @@ namespace SpeedyWheels.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Address,PhoneNumber,BirthDate,DriverLicenseNr,IsActive,UserId")] Client client)
         {
             if (id != client.Id)
@@ -99,6 +101,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Clients/Delete/5
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Clients == null)
@@ -120,6 +123,7 @@ namespace SpeedyWheels.Controllers
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Clients == null)

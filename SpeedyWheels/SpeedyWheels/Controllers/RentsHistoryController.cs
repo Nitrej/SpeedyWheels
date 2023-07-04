@@ -45,6 +45,9 @@ namespace SpeedyWheels.Controllers
         public IActionResult Rating(int rentId, int rate, string comment, int clientId)
         {
 
+            if(rate<1) rate = 1;
+            if(rate>5) rate = 5;
+
             this.context.Rentals.FirstOrDefault(i => i.Id == rentId).IsRated = true;
             this.context.SaveChanges();
 
@@ -82,11 +85,13 @@ namespace SpeedyWheels.Controllers
             });
             return View(rent);
         }
+        [Authorize(Policy = "moderatorsOnly")]
         public IActionResult GoToRate(int id)
         {
             var op = this.context.ClientOpinions.FirstOrDefault(i => i.RentalId == id);
             return RedirectToAction("Details","ClientOpinions", new {id = op.Id});
         }
+        [Authorize(Policy = "moderatorsOnly")]
         public IActionResult GoToInvoice(int id)
         {
             var inv = this.context.Invoices.FirstOrDefault(i => i.RentalId == id);

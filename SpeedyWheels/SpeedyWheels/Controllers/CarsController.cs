@@ -29,6 +29,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Cars/Details/5
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Cars == null)
@@ -47,6 +48,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Cars/Create
+        [Authorize(Policy = "moderatorsOnly")]
         public IActionResult Create()
         {
             return View();
@@ -57,6 +59,7 @@ namespace SpeedyWheels.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Create([Bind("Id,Name,CostPerHour,ProductionYear,Mileage,DoorCount,GearBox,SeatsCount,IsRented,Brand,RegistrationNumber,ImageAddress,IsActive")] Car car)
         {
             if (ModelState.IsValid)
@@ -83,6 +86,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Cars/Edit/5
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Cars == null)
@@ -103,6 +107,7 @@ namespace SpeedyWheels.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CostPerHour,ProductionYear,Mileage,DoorCount,GearBox,SeatsCount,IsRented,Brand,RegistrationNumber,ImageAddress,IsActive")] Car car)
         {
             if (id != car.Id)
@@ -134,6 +139,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Cars/Delete/5
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Cars == null)
@@ -154,6 +160,7 @@ namespace SpeedyWheels.Controllers
         // POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Cars == null)

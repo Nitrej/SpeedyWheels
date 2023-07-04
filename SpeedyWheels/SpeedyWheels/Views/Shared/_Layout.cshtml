@@ -36,19 +36,19 @@
                         </li>
                         @if (User.HasClaim("Administrator", "true") || User.HasClaim("Operator", "true")) {                           
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Samochody admina</a>  
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Lista Samochodów</a>  
                              </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="RentsHistory" asp-action="AllHistory">Historia admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="RentsHistory" asp-action="AllHistory">Zapis transakcji</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ClientOpinions" asp-action="Index">Oceny admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ClientOpinions" asp-action="Index">Lista Ocen</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Index">Klieni admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Clients" asp-action="Index">Dane klientów</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Invoices" asp-action="Index">Faktury admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Invoices" asp-action="Index">Faktury</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Notatki serwisowe</a>
