@@ -21,7 +21,7 @@ namespace SpeedyWheels.Controllers
         // GET: Invoices
         public async Task<IActionResult> Index()
         {
-            var rentalDataContext = _context.Invoices.Include(i => i.Client).Include(i => i.Rental);
+            var rentalDataContext = _context.Invoices.Include(i => i.Client).Include(i => i.Rental).OrderBy(o => o.Id);
             return View(await rentalDataContext.ToListAsync());
         }
 
@@ -54,13 +54,16 @@ namespace SpeedyWheels.Controllers
                 return NotFound();
             }
 
-            var invoice = await _context.Invoices.FindAsync(id);
+            var invoice = await _context.Invoices.Include(i => i.Client)
+                .Include(i => i.Rental).FirstOrDefaultAsync(m => m.Id == id);
             if (invoice == null)
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "Address", invoice.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "Id", invoice.ClientId);
             ViewData["RentalId"] = new SelectList(_context.Rentals, "Id", "Id", invoice.RentalId);
+            ViewData["Client"] = invoice.Client;
+            ViewData["Rental"] = invoice.Rental;
             return View(invoice);
         }
 
@@ -75,28 +78,28 @@ namespace SpeedyWheels.Controllers
             {
                 return NotFound();
             }
+            invoice.Client = _context.Clients.FirstOrDefault(i => i.Id == invoice.ClientId);
+            invoice.Rental = _context.Rentals.FirstOrDefault(i => i.Id == invoice.RentalId);
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(invoice);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!InvoiceExists(invoice.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(invoice);
+                await _context.SaveChangesAsync();
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "Address", invoice.ClientId);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!InvoiceExists(invoice.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
+            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "Id", invoice.ClientId);
             ViewData["RentalId"] = new SelectList(_context.Rentals, "Id", "Id", invoice.RentalId);
             return View(invoice);
         }  

@@ -19,7 +19,7 @@ namespace SpeedyWheels.Controllers
         public IActionResult Index()
         {
             var id = this.context.Clients.FirstOrDefault(i => i.UserId == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).Id;
-            var rent = this.context.Rentals.Where(o => o.ClientId == id).Include("Car").Include("Client").Select(m => new HistoryViewModel
+            var rent = this.context.Rentals.Where(o => o.ClientId == id).Include("Car").Include("Client").OrderBy(o => o.Id).Select(m => new HistoryViewModel
             {
                 Id = m.Id,
                 Brand = m.Car.Brand,
@@ -65,7 +65,7 @@ namespace SpeedyWheels.Controllers
         [Authorize]
         public IActionResult AllHistory()
         {
-            var rent = this.context.Rentals.Include("Car").Include("Client").Select(m => new HistoryViewModel
+            var rent = this.context.Rentals.Include("Car").Include("Client").OrderBy(o => o.Id).Select(m => new HistoryViewModel
             {
                 Id = m.Id,
                 Brand = m.Car.Brand,

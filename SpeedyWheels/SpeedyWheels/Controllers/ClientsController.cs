@@ -21,7 +21,7 @@ namespace SpeedyWheels.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            var rentalDataContext = _context.Clients.Include(c => c.User);
+            var rentalDataContext = _context.Clients.Include(c => c.User).OrderBy(o => o.Id);
             return View(await rentalDataContext.ToListAsync());
         }
 

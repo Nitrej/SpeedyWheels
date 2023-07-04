@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SpeedyWheels.Models.Invoice>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Faktury";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Faktury</h1>
 
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
@@ -59,9 +59,8 @@
                 @Html.DisplayFor(modelItem => item.PaymentStatus)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detale</a> |
             </td>
         </tr>
 }
