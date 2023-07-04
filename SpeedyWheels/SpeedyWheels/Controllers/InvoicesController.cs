@@ -103,10 +103,6 @@ namespace SpeedyWheels.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
-
-            ViewData["ClientId"] = new SelectList(_context.Clients, "Id", "Id", invoice.ClientId);
-            ViewData["RentalId"] = new SelectList(_context.Rentals, "Id", "Id", invoice.RentalId);
-            return View(invoice);
         }  
 
         private bool InvoiceExists(int id)

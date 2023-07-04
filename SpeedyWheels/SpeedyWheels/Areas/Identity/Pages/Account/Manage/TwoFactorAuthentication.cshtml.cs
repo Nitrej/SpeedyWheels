@@ -27,7 +27,6 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account.Manage
         private readonly IUserStore<User> _userStore;
         private readonly IUserEmailStore<User> _emailStore;
         private readonly RentalDataContext _rentalDataContext;
-        private readonly Client _clientContext;
 
         public TwoFactorAuthenticationModel(
             UserManager<User> userManager, SignInManager<User> signInManager, ILogger<TwoFactorAuthenticationModel> logger,
