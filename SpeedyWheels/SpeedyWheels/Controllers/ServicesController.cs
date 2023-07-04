@@ -20,7 +20,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Services
-        [Authorize(Policy = "administratorOnly")]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Index()
         {
             var rentalDataContext = _context.Services.Include(s => s.Car).OrderBy(o => o.Id);

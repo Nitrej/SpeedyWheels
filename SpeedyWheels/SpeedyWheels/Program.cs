@@ -72,6 +72,11 @@ void AddAuthorizationPolicies(IServiceCollection services) {
         options.AddPolicy("commonUserOnly", policy => policy.RequireClaim("commonUser"));
         options.AddPolicy("operatorOnly", policy => policy.RequireClaim("Operator"));
         options.AddPolicy("administratorOnly", policy => policy.RequireClaim("Administrator"));
+        options.AddPolicy("moderatorsOnly", policy => policy.RequireAssertion(context => {
+            bool isAdmin = context.User.HasClaim("Administrator", "true");
+            bool isOperator = context.User.HasClaim("Operator", "true");
+            return isAdmin || isOperator;
+        }));
     });
 }
 

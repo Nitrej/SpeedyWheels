@@ -20,7 +20,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Invoices
-        [Authorize(Policy = "administratorOnly")]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Index()
         {
             var rentalDataContext = _context.Invoices.Include(i => i.Client).Include(i => i.Rental).OrderBy(o => o.Id);

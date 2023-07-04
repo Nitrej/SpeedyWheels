@@ -20,7 +20,7 @@ namespace SpeedyWheels.Controllers
         }
 
         // GET: Cars
-        [Authorize(Policy ="administratorOnly")]
+        [Authorize(Policy = "moderatorsOnly")]
         public async Task<IActionResult> Index()
         {
               return _context.Cars != null ? 
