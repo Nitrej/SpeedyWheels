@@ -18,7 +18,7 @@
                 <p style="float: right; clear: both; padding: 5pt;">Ilość godzin: @rent.HourCount</p>
                 <h3 style="float: right; clear: both; padding: 5pt;">@rent.Cost zł</h3>
 
-                <a asp-action="Details" asp-route-id="@rent.CarId">Datale Pojazdu</a>
+                <a style="float: right; clear: both; padding: 5pt;" asp-action="Details" asp-route-id="@rent.CarId">Datale Pojazdu</a>
 
                 @if (!rent.IsRated) 
                 {

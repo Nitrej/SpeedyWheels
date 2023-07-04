@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlTypes;
@@ -32,13 +33,16 @@ namespace SpeedyWheels.Models
 
         [Required]
         [NotNull]
+        [DisplayName("Ocena")]
         public int Rating { get; set; }
 
         [MaxLength(200)]
+        [DisplayName("Komentarz")]
         public string Content { get; set; }
 
         [Required]
         [NotNull]
+        [DisplayName("Data Wystawienia")]
         public DateTime Date { get; set; }
 
     }

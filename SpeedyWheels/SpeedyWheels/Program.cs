@@ -17,6 +17,7 @@ builder.Services.AddDbContext<RentalDataContext>(o => o.UseNpgsql(builder.Config
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false) /*upraszczam se robote na razie zrobie potem bo tera mi sie nie chce*/
     .AddEntityFrameworkStores<RentalDataContext>();
 
+
 #region Authorization
 AddAuthorizationPolicies(builder.Services);
 #endregion
@@ -47,6 +48,13 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "RentsHistory",
     pattern: "{controller=RentsHistory}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "ClientOpinions",
+    pattern: "{controller=ClientOpinions}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "Clients",
+    pattern: "{controller=Clients}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

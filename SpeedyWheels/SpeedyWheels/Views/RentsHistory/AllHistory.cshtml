@@ -18,21 +18,12 @@
                 <p style="float: right; clear: both; padding: 5pt;">Ilość godzin: @rent.HourCount</p>
                 <h3 style="float: right; clear: both; padding: 5pt;">@rent.Cost zł</h3>
 
-                <a asp-action="Details" asp-route-id="@rent.CarId">Datale Pojazdu</a>
-
-                @if (!rent.IsRated)
+                <a style="float: right; clear: both; padding: 5pt;" asp-action="Details" asp-route-id="@rent.CarId">Datale Pojazdu</a>
+                <a style="float: right; clear: both; padding: 5pt;" asp-action="Details" asp-controller="Clients" asp-route-id="@rent.ClientId">Datale Klienta</a>
+                @if(@rent.IsRated)
                 {
-                    <form asp-controller="RentsHistory" asp-action="Rating" method="post" style="float: right; clear: both; padding: 5pt;">
-                        <input style="visibility: hidden" type="number" name="rentId" readonly value="@rent.Id"></input>
-                        <input style="visibility: hidden" type="number" name="carId" readonly value="@rent.CarId"></input>
-                        <input style="visibility: hidden" type="number" name="clientId" readonly value="@rent.ClientId"></input>
-                        <label style="float: right; clear: both; padding: 5pt;">Ocena (1-5) :<input type="number" required name="rate"></input></label>
-                        <label style="float: right; clear: both; padding: 5pt;">Komentarz :<input type="text" required name="comment"></input></label>
-                        <input class="btn btn-primary" style="float: right; clear: both; padding: 5pt;" type="submit" value="Oceń"></input>
-                    </form>
+                    <a style="float: right; clear: both; padding: 5pt;" asp-action="GoToRate" asp-route-id="@rent.Id">Ocena</a>
                 }
-
-
             </div>
         </div>
     }

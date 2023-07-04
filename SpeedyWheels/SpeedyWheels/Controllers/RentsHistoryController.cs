@@ -63,7 +63,7 @@ namespace SpeedyWheels.Controllers
             return RedirectToAction("Index");
         }
         [Authorize]
-        public IActionResult SeeAll()
+        public IActionResult AllHistory()
         {
             var rent = this.context.Rentals.Include("Car").Include("Client").Select(m => new HistoryViewModel
             {
@@ -82,10 +82,10 @@ namespace SpeedyWheels.Controllers
             });
             return View(rent);
         }
-        public IActionResult GoToRate()
+        public IActionResult GoToRate(int id)
         {
-            
-            return View();
+            var op = this.context.ClientOpinions.FirstOrDefault(i => i.RentalId == id);
+            return RedirectToAction("Details","ClientOpinions", new {id = op.Id});
         }
     }
 }
