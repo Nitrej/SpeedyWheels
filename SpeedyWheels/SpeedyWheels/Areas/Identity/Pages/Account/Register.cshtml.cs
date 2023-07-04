@@ -189,7 +189,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
 
                     var cl = new System.Security.Claims.Claim("commonUser", code);
                     await _userManager.AddClaimAsync(user, cl);
-                    
+                    await _userManager.AddToRoleAsync(user, "Member");
 
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
