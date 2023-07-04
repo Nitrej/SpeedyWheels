@@ -6,6 +6,8 @@ using SpeedyWheels.ViewModels;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Net;
+using Moq;
+using NuGet.ContentModel;
 
 namespace SpeedyWheels.Controllers
 {
@@ -36,8 +38,7 @@ namespace SpeedyWheels.Controllers
                 cars = cars.Where(s => s.Name.ToLower().Contains(pattern) || s.Brand.ToLower().Contains(pattern));
             }
             return View(cars);
-        }
-
+        }    
 
         public IActionResult Contact()
         {

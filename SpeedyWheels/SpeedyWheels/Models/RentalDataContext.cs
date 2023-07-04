@@ -14,6 +14,7 @@ namespace SpeedyWheels.Models
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();
@@ -31,4 +32,5 @@ namespace SpeedyWheels.Models
         public DbSet<Services> Services { get; set; }
 
     }
+
 }

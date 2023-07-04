@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedyWheels", "SpeedyWheels\SpeedyWheels.csproj", "{FD7E890D-AE55-4B0D-9D9B-123EA3A540D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedyWheels", "SpeedyWheels\SpeedyWheels.csproj", "{FD7E890D-AE55-4B0D-9D9B-123EA3A540D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentalApp.Data", "RentalApp.Data\RentalApp.Data.csproj", "{A3734E6D-611E-4FDC-A1D4-D2011BC45D9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{6514C012-E3BB-4FE7-A3CD-7B798AFF18ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{FD7E890D-AE55-4B0D-9D9B-123EA3A540D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD7E890D-AE55-4B0D-9D9B-123EA3A540D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD7E890D-AE55-4B0D-9D9B-123EA3A540D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3734E6D-611E-4FDC-A1D4-D2011BC45D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3734E6D-611E-4FDC-A1D4-D2011BC45D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3734E6D-611E-4FDC-A1D4-D2011BC45D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3734E6D-611E-4FDC-A1D4-D2011BC45D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6514C012-E3BB-4FE7-A3CD-7B798AFF18ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6514C012-E3BB-4FE7-A3CD-7B798AFF18ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6514C012-E3BB-4FE7-A3CD-7B798AFF18ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6514C012-E3BB-4FE7-A3CD-7B798AFF18ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
