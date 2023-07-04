@@ -128,7 +128,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} musi być conajmniej {2} i maksymalnie {1} znaków długości.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Haslo*")]
             public string Password { get; set; }
@@ -177,7 +177,7 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
                 client.IsActive = true;
 
                 var age = DateTime.Today.Year - Input.Date.Year;
-                if (DateTime.Today > Input.Date.AddYears(age)) {
+                if (age < 18) {
                     ModelState.AddModelError(string.Empty, "Musisz mieć co najmniej 18 lat, aby założyć konto");
                     return Page();
                 }
@@ -207,7 +207,6 @@ namespace SpeedyWheels.Areas.Identity.Pages.Account
 
                     var cl = new System.Security.Claims.Claim("commonUser", "true");
                     await _userManager.AddClaimAsync(user, cl);
-                    //await _userManager.AddToRoleAsync(user, "Admin");
 
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
