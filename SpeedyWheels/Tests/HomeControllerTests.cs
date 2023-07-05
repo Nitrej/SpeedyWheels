@@ -24,7 +24,7 @@ namespace TestProject1
                 new Car { Brand = "AnotherBrand####", Name = "AnotherCar", IsRented = false, IsActive = true, CostPerHour = 0, DoorCount = 0, GearBox = 'M' , ImageAddress="0", Mileage = 1, ProductionYear= "1", RegistrationNumber = "1", SeatsCount = 1 }
             };
             
-            var options = new DbContextOptionsBuilder<RentalDataContext>().UseNpgsql( "Server=158.75.112.40;Database=jasno;Port=5432;User Id=jasno;Password=TreTronik229!").Options;
+            var options = new DbContextOptionsBuilder<RentalDataContext>().UseNpgsql( "Server=158.75.112.40;Database=jasno;Port=5432;User Id=jasno;Password=***").Options;
 
             using var context = new RentalDataContext(options);
             context.Cars.AddRange(expectedCars);
